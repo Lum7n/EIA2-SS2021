@@ -1,0 +1,51 @@
+body {
+    text-align: center;
+}
+
+h1 {
+    text-align: initial;
+    padding-left: 5%;
+    color: #1c491e;
+}
+
+span {
+    position: fixed;
+    border: 4px solid #24693f;
+    background-color: #ceecda;
+    padding: 6px;
+}
+
+#div0 {
+    display: inline-block;
+    border: 4px solid #24693f;
+    background-color: #ceecda;
+    width: 45%;
+    height: 500px;
+}
+
+#div1 {
+    display: inline-block;
+    border: 4px solid #24693f;
+    background-color: #ceecda;
+    width: 45%;
+    height: 500px;
+}
+
+#buttonDiv0 {
+    width: 100px;
+    height: 40px;
+    margin-top: 250px;
+    color: #24693f;
+    font-weight: bolder;
+}
+
+#buttonDiv1 {
+    width: 100px;
+    height: 40px;
+    margin-top: 250px;
+    color: #24693f;
+    font-weight: bolder;
+}
+
+
+
