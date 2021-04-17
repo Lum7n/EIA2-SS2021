@@ -7,6 +7,7 @@ namespace EventInspector {
         document.addEventListener("mousemove", setinfoBox);
         document.addEventListener("click", logInfo);
         document.addEventListener("keyup", logInfo);
+        document.addEventListener("bubble", bubble);
 
         let body: HTMLBodyElement = <HTMLBodyElement>document.querySelector("body");
         body.addEventListener("click", logInfo);
@@ -21,10 +22,10 @@ namespace EventInspector {
         div1.addEventListener("keyup", logInfo);
 
         let buttonOfDiv0: HTMLButtonElement = <HTMLButtonElement>document.getElementById("buttonDiv0");
-        buttonOfDiv0.addEventListener("click", bubble);
+        buttonOfDiv0.addEventListener("click", getCustomEvent);
 
         let buttonOfDiv1: HTMLButtonElement = <HTMLButtonElement>document.getElementById("buttonDiv1");
-        buttonOfDiv1.addEventListener("click", bubble);
+        buttonOfDiv1.addEventListener("click", getCustomEvent);
     }
 
     function setinfoBox(_event: MouseEvent): void {
@@ -52,19 +53,17 @@ namespace EventInspector {
         console.log(_event);
     }
 
-    function bubble(): void {
+    function getCustomEvent(_event: Event): void {
 
-        let buttonOfDiv0: HTMLButtonElement = <HTMLButtonElement>document.getElementById("buttonDiv0");
-        let buttonOfDiv1: HTMLButtonElement = <HTMLButtonElement>document.getElementById("buttonDiv1");
+        let event: CustomEvent = new CustomEvent("bubble", { bubbles: true });
 
-        let event: CustomEvent = new CustomEvent("bubble", { bubbles: true});
+        let theDiv: EventTarget = <EventTarget>_event.currentTarget;
+        theDiv.dispatchEvent(event);
 
-        buttonOfDiv0.dispatchEvent(event);
-        buttonOfDiv1.dispatchEvent(event);
-        
-//es soll ausgegeben werden wenn bei document ankommt
-        
-        console.log(event);
+    }
+
+    function bubble(_event: Event): void {
+        console.log(_event);
     }
 
 

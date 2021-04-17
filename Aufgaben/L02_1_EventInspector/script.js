@@ -6,6 +6,7 @@ var EventInspector;
         document.addEventListener("mousemove", setinfoBox);
         document.addEventListener("click", logInfo);
         document.addEventListener("keyup", logInfo);
+        document.addEventListener("bubble", bubble);
         let body = document.querySelector("body");
         body.addEventListener("click", logInfo);
         body.addEventListener("keyup", logInfo);
@@ -16,9 +17,9 @@ var EventInspector;
         div1.addEventListener("click", logInfo);
         div1.addEventListener("keyup", logInfo);
         let buttonOfDiv0 = document.getElementById("buttonDiv0");
-        buttonOfDiv0.addEventListener("click", bubble);
+        buttonOfDiv0.addEventListener("click", getCustomEvent);
         let buttonOfDiv1 = document.getElementById("buttonDiv1");
-        buttonOfDiv1.addEventListener("click", bubble);
+        buttonOfDiv1.addEventListener("click", getCustomEvent);
     }
     function setinfoBox(_event) {
         let spanAtMouse = document.querySelector("span");
@@ -36,14 +37,13 @@ var EventInspector;
         console.log(_event.currentTarget);
         console.log(_event);
     }
-    function bubble() {
-        let buttonOfDiv0 = document.getElementById("buttonDiv0");
-        let buttonOfDiv1 = document.getElementById("buttonDiv1");
+    function getCustomEvent(_event) {
         let event = new CustomEvent("bubble", { bubbles: true });
-        buttonOfDiv0.dispatchEvent(event);
-        buttonOfDiv1.dispatchEvent(event);
-        //es soll ausgegeben werden wenn bei document ankommt
-        console.log(event);
+        let theDiv = _event.currentTarget;
+        theDiv.dispatchEvent(event);
+    }
+    function bubble(_event) {
+        console.log(_event);
     }
 })(EventInspector || (EventInspector = {}));
 //# sourceMappingURL=script.js.map
