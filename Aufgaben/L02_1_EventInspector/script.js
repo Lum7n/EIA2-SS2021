@@ -34,7 +34,7 @@ var EventInspector;
         console.log(_event.type);
         console.log(_event.target);
         console.log(_event.currentTarget);
-        console.log(_event.composedPath());
+        console.log(_event);
     }
     function bubble() {
         let buttonOfDiv0 = document.getElementById("buttonDiv0");
