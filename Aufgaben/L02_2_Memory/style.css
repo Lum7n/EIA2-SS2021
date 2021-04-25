@@ -11,7 +11,8 @@ h1 {
 #container {
     position: absolute;
     margin-left: 2%;
-    width: 93%;
+    padding: 50px 20px 0px 20px;
+    width: 88%;
     height: 70%;
     border: 3px solid khaki;
     background-color: lightgoldenrodyellow;
@@ -30,4 +31,15 @@ h1 {
 
 #startbtn:hover {
     background-color: lightblue;
+}
+
+span {
+    font-size: 90px;
+}
+
+.cardContainer {
+    margin: 6px;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
 }
