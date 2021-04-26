@@ -11,6 +11,8 @@ var valentina;
         let playcards = [];
         let chosenCards = [];
         let matches = [];
+        let card1;
+        let card2;
         let introduction;
         let container;
         let startButton;
@@ -35,35 +37,67 @@ var valentina;
                 // console.log(playcards);
             }
             shuffle(playcards);
-            console.log(playcards);
+            // console.log(playcards);
             for (let k = 0; k < playcards.length; k++) {
                 let div = document.createElement("div");
                 div.classList.add("cardContainer");
                 div.style.backgroundColor = "#46469b";
                 let span = document.createElement("span");
                 span.innerHTML = playcards[k];
-                span.id = playcards[k];
-                span.style.color = "#46469b";
+                span.classList.add("unhidden");
+                let checkIfSecondLetter = document.getElementById(playcards[k] + "1");
+                if (checkIfSecondLetter == null) {
+                    span.id = playcards[k] + "1";
+                }
+                else {
+                    span.id = playcards[k] + "2";
+                }
                 span.addEventListener("click", showLetters);
                 div.appendChild(span);
                 container.appendChild(div);
+                let width = span.offsetWidth;
+                let restWidth = 100 - width;
+                let paddingLeft = restWidth / 2;
+                let paddingRight = restWidth / 2;
+                span.style.paddingLeft = paddingLeft + "px";
+                span.style.paddingRight = paddingRight + "px";
+            }
+            setTimeout(hideAllLetters, 3000);
+        }
+        function hideAllLetters() {
+            let allSpan = document.querySelectorAll("span");
+            for (let i = 0; i < allSpan.length; i++) {
+                if (allSpan[i].classList.contains("unhidden")) {
+                    allSpan[i].classList.remove("unhidden");
+                    allSpan[i].classList.add("hidden");
+                }
             }
         }
         function showLetters(_event) {
             let targetSpan = _event.target;
-            let targetID1 = this.id; //Help!!!! wie geht das ohne das der Linter mich gleich erhängt
-            let targetID2 = _event.target.id; // die beiden Methoden funktionieren, aber das kann ja nicht die richtige Lösung sein...? oder ?
-            console.log(targetSpan, targetID1, targetID2);
-            _event.target.style.color = "#ffffff";
-            chosenCards.push(targetID1);
-            if (chosenCards.length == 2) {
+            let targetID1 = targetSpan.id; //Help!!!! wie geht das ohne das der Linter mich gleich erhängt
+            // let targetID2: string = _event.target.id;   
+            // let targetID3: string = this.id;                    // alle drei Methoden funktionieren, aber das kann ja nicht die richtige Lösung sein...? oder ?
+            // console.log(targetSpan, targetID1, targetID2, targetID3);
+            targetSpan.classList.remove("hidden");
+            targetSpan.classList.add("unhidden");
+            let onlyLetter = targetID1.slice(0, 1);
+            chosenCards.push(onlyLetter);
+            if (chosenCards.length == 1) {
+                card1 = document.getElementById(targetID1);
+                console.log(card1);
+            }
+            else if (chosenCards.length == 2) {
+                card2 = document.getElementById(targetID1);
+                console.log(card2);
                 setTimeout(checkForMatch, 500);
             }
         }
         function checkForMatch() {
             if (chosenCards[0] == chosenCards[1]) {
                 alert("it's a match!");
-                //how can I find the two spans_ here less important cause they're right but....
+                card1.style.background = "slategrey";
+                card2.style.background = "slategrey";
                 let cardOneArray = chosenCards.splice(0, 1);
                 let cardOne = cardOneArray.toString();
                 matches.push(cardOne);
@@ -73,7 +107,10 @@ var valentina;
             }
             else {
                 alert("wrong! try again.");
-                // here really important, i need to hide them again...
+                card1.classList.remove("unhidden");
+                card1.classList.add("hidden");
+                card2.classList.remove("unhidden");
+                card2.classList.add("hidden");
             }
             chosenCards = [];
             if (matches.length == playcards.length) {

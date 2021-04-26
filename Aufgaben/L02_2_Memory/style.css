@@ -35,6 +35,7 @@ h1 {
 
 span {
     font-size: 90px;
+    user-select: none;
 }
 
 .cardContainer {
@@ -42,4 +43,12 @@ span {
     width: 100px;
     height: 100px;
     display: inline-block;
+}
+
+.hidden {
+    color: #46469b;
+}
+
+.unhidden {
+    color: #ffffff;
 }
