@@ -205,20 +205,6 @@ namespace Memory {
             span.addEventListener("click", showLetters);
             div.appendChild(span);
             container.appendChild(div);
-
-            let width: number = span.offsetWidth;
-            let restWidth: number = cardSize - width;
-            let paddingLeft: number = restWidth / 2;
-            let paddingRight: number = restWidth / 2;
-            span.style.paddingLeft = paddingLeft + "px";
-            span.style.paddingRight = paddingRight + "px";
-
-            let height: number = span.offsetHeight;
-            let restHeight: number = cardSize - height;
-            let paddingTop: number = restHeight / 3;
-            let paddingBottom: number = paddingTop * 2;
-            span.style.paddingTop = paddingTop + 5 + "px";
-            span.style.paddingBottom = paddingBottom + "px";
         }
 
         setTimeout(hideAllLetters, 3000);
@@ -246,7 +232,7 @@ namespace Memory {
         // let targetID3: string = this.id;                    // alle drei Methoden funktionieren, aber das kann ja nicht die richtige Lösung sein...? oder ?
 
         // console.log(targetSpan, targetID1, targetID2, targetID3);
-      
+
         let onlyLetter: string = targetID1.slice(0, 1);
         chosenCards.push(onlyLetter);
 

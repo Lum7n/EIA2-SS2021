@@ -167,18 +167,6 @@ var Memory;
             span.addEventListener("click", showLetters);
             div.appendChild(span);
             container.appendChild(div);
-            let width = span.offsetWidth;
-            let restWidth = cardSize - width;
-            let paddingLeft = restWidth / 2;
-            let paddingRight = restWidth / 2;
-            span.style.paddingLeft = paddingLeft + "px";
-            span.style.paddingRight = paddingRight + "px";
-            let height = span.offsetHeight;
-            let restHeight = cardSize - height;
-            let paddingTop = restHeight / 3;
-            let paddingBottom = paddingTop * 2;
-            span.style.paddingTop = paddingTop + 5 + "px";
-            span.style.paddingBottom = paddingBottom + "px";
         }
         setTimeout(hideAllLetters, 3000);
     }
