@@ -13,13 +13,16 @@ namespace Memory {
     let card1: HTMLElement;
     let card2: HTMLElement;
 
+    let parent1: HTMLDivElement;
+    let parent2: HTMLDivElement;
+
     let homeScreen: HTMLDivElement;
     let container: HTMLDivElement;
     let form: HTMLFormElement;
     let startButton: HTMLButtonElement;
 
-    let cardBack: string = "#46469b";
-    let fontColor: string = "#000000";
+    let cardColor: string = "#46469b";
+    let fontColor: string = "#ffffff";
 
     window.addEventListener("load", handleLoad);
 
@@ -63,9 +66,10 @@ namespace Memory {
             homeScreen.style.backgroundColor = target.value;
             container.style.backgroundColor = target.value;
 
-        } else if (target.name == "cardBack") {
+        } else if (target.name == "cardColor") {
             sampleCardBack.style.backgroundColor = target.value;
             sampleCardBack.style.color = target.value;
+            sampleCardFront.style.backgroundColor = target.value;
 
         } else if (target.name == "fontColor") {
             sampleCardFront.style.color = target.value;
@@ -131,9 +135,9 @@ namespace Memory {
                     // console.log(item.value);
                     cardSize = parseFloat(item.value);
                     break;
-                case "cardBack":
+                case "cardColor":
                     // console.log(item.value);
-                    cardBack = item.value;
+                    cardColor = item.value;
                     break;
                 case "fontColor":
                     // console.log(item.value);
@@ -180,13 +184,13 @@ namespace Memory {
             div.style.width = cardSize + "px";
             div.style.height = cardSize + "px";
 
-            div.style.backgroundColor = cardBack;
+            div.style.backgroundColor = cardColor;
 
             let span: HTMLSpanElement = document.createElement("span");
             span.innerHTML = playcards[k];
             span.classList.add("unhidden");
 
-            let fontSize: number = cardSize - 10;
+            let fontSize: number = cardSize - 18;
             span.style.fontSize = fontSize + "px";
             span.style.color = fontColor;
             span.style.fontFamily = fontFamily;
@@ -208,6 +212,13 @@ namespace Memory {
             let paddingRight: number = restWidth / 2;
             span.style.paddingLeft = paddingLeft + "px";
             span.style.paddingRight = paddingRight + "px";
+
+            let height: number = span.offsetHeight;
+            let restHeight: number = cardSize - height;
+            let paddingTop: number = restHeight / 3;
+            let paddingBottom: number = paddingTop * 2;
+            span.style.paddingTop = paddingTop + 5 + "px";
+            span.style.paddingBottom = paddingBottom + "px";
         }
 
         setTimeout(hideAllLetters, 3000);
@@ -222,7 +233,7 @@ namespace Memory {
             if (allSpan[i].classList.contains("unhidden")) {
                 allSpan[i].classList.remove("unhidden");
                 allSpan[i].classList.add("hidden");
-                allSpan[i].style.color = cardBack;
+                allSpan[i].style.color = cardColor;
             }
         }
     }
@@ -241,12 +252,15 @@ namespace Memory {
 
         if (chosenCards.length == 1) {
             card1 = <HTMLElement>document.getElementById(targetID1);
+            parent1 = <HTMLDivElement>card1.parentElement;
             card1.classList.remove("hidden");
             card1.classList.add("unhidden");
             card1.style.color = fontColor;
             // console.log(card1);
         } else if (chosenCards.length == 2) {
             card2 = <HTMLElement>document.getElementById(targetID1);
+            parent2 = <HTMLDivElement>card2.parentElement;
+            console.log(parent2);
             card2.classList.remove("hidden");
             card2.classList.add("unhidden");
             card2.style.color = fontColor;
@@ -259,10 +273,9 @@ namespace Memory {
 
 
         if (chosenCards[0] == chosenCards[1]) {
-            alert("it's a match!");
-
-            card1.style.background = "slategrey";
-            card2.style.background = "slategrey";
+            // alert("it's a match!");
+            parent1.style.background = "slategrey";
+            parent2.style.background = "slategrey";
 
             let cardOneArray: string[] = chosenCards.splice(0, 1);
             let cardOne: string = cardOneArray.toString();
@@ -272,15 +285,15 @@ namespace Memory {
             matches.push(cardTwo);
 
         } else {
-            alert("wrong! try again.");
+            // alert("wrong! try again.");
 
             card1.classList.remove("unhidden");
             card1.classList.add("hidden");
-            card1.style.color = cardBack;
+            card1.style.color = cardColor;
 
             card2.classList.remove("unhidden");
             card2.classList.add("hidden");
-            card2.style.color = cardBack;
+            card2.style.color = cardColor;
         }
 
         chosenCards = [];
