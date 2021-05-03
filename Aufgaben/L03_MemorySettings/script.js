@@ -18,6 +18,7 @@ var Memory;
     let form;
     let startButton;
     let cardColor = "#46469b";
+    let cardBackColor = "#521438";
     let fontColor = "#ffffff";
     window.addEventListener("load", handleLoad);
     function handleLoad() {
@@ -48,10 +49,12 @@ var Memory;
             homeScreen.style.backgroundColor = target.value;
             container.style.backgroundColor = target.value;
         }
-        else if (target.name == "cardColor") {
+        else if (target.name == "cardFrontColor") {
+            sampleCardFront.style.backgroundColor = target.value;
+        }
+        else if (target.name == "cardBackColor") {
             sampleCardBack.style.backgroundColor = target.value;
             sampleCardBack.style.color = target.value;
-            sampleCardFront.style.backgroundColor = target.value;
         }
         else if (target.name == "fontColor") {
             sampleCardFront.style.color = target.value;
@@ -105,9 +108,13 @@ var Memory;
                     // console.log(item.value);
                     cardSize = parseFloat(item.value);
                     break;
-                case "cardColor":
+                case "cardFrontColor":
                     // console.log(item.value);
                     cardColor = item.value;
+                    break;
+                case "cardBackColor":
+                    // console.log(item.value);
+                    cardBackColor = item.value;
                     break;
                 case "fontColor":
                     // console.log(item.value);
@@ -176,7 +183,9 @@ var Memory;
             if (allSpan[i].classList.contains("unhidden")) {
                 allSpan[i].classList.remove("unhidden");
                 allSpan[i].classList.add("hidden");
-                allSpan[i].style.color = cardColor;
+                allSpan[i].style.color = cardBackColor;
+                let parentDiv = allSpan[i].parentElement;
+                parentDiv.style.backgroundColor = cardBackColor;
             }
         }
     }
@@ -194,6 +203,7 @@ var Memory;
             card1.classList.remove("hidden");
             card1.classList.add("unhidden");
             card1.style.color = fontColor;
+            parent1.style.backgroundColor = cardColor;
             // console.log(card1);
         }
         else if (chosenCards.length == 2) {
@@ -203,6 +213,7 @@ var Memory;
             card2.classList.remove("hidden");
             card2.classList.add("unhidden");
             card2.style.color = fontColor;
+            parent2.style.backgroundColor = cardColor;
             // console.log(card2);
             setTimeout(checkForMatch, 500);
         }
@@ -223,10 +234,12 @@ var Memory;
             // alert("wrong! try again.");
             card1.classList.remove("unhidden");
             card1.classList.add("hidden");
-            card1.style.color = cardColor;
+            card1.style.color = cardBackColor;
+            parent1.style.background = cardBackColor;
             card2.classList.remove("unhidden");
             card2.classList.add("hidden");
-            card2.style.color = cardColor;
+            card2.style.color = cardBackColor;
+            parent2.style.background = cardBackColor;
         }
         chosenCards = [];
         if (matches.length == playcards.length) {
