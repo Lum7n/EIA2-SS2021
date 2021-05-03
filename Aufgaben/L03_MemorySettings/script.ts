@@ -21,7 +21,7 @@ namespace Memory {
     let form: HTMLFormElement;
     let startButton: HTMLButtonElement;
 
-    let cardColor: string = "#46469b";
+    let cardFrontColor: string = "#46469b";
     let cardBackColor: string = "#521438";
     let fontColor: string = "#ffffff";
 
@@ -140,7 +140,7 @@ namespace Memory {
                     break;
                 case "cardFrontColor":
                     // console.log(item.value);
-                    cardColor = item.value;
+                    cardFrontColor = item.value;
                     break;
                 case "cardBackColor":
                     // console.log(item.value);
@@ -191,7 +191,7 @@ namespace Memory {
             div.style.width = cardSize + "px";
             div.style.height = cardSize + "px";
 
-            div.style.backgroundColor = cardColor;
+            div.style.backgroundColor = cardFrontColor;
 
             let span: HTMLSpanElement = document.createElement("span");
             span.innerHTML = playcards[k];
@@ -212,6 +212,13 @@ namespace Memory {
             span.addEventListener("click", showLetters);
             div.appendChild(span);
             container.appendChild(div);
+
+            let width: number = span.offsetWidth;
+            let restWidth: number = cardSize - width;
+            let paddingLeft: number = restWidth / 2;
+            let paddingRight: number = restWidth / 2;
+            span.style.paddingLeft = paddingLeft + "px";
+            span.style.paddingRight = paddingRight + "px";
         }
 
         setTimeout(hideAllLetters, 3000);
@@ -252,7 +259,7 @@ namespace Memory {
             card1.classList.remove("hidden");
             card1.classList.add("unhidden");
             card1.style.color = fontColor;
-            parent1.style.backgroundColor = cardColor;
+            parent1.style.backgroundColor = cardFrontColor;
             // console.log(card1);
         } else if (chosenCards.length == 2) {
             card2 = <HTMLElement>document.getElementById(targetID1);
@@ -261,7 +268,7 @@ namespace Memory {
             card2.classList.remove("hidden");
             card2.classList.add("unhidden");
             card2.style.color = fontColor;
-            parent2.style.backgroundColor = cardColor;
+            parent2.style.backgroundColor = cardFrontColor;
             // console.log(card2);
             setTimeout(checkForMatch, 500);
         }
@@ -300,8 +307,12 @@ namespace Memory {
         chosenCards = [];
 
         if (matches.length == playcards.length) {
-            alert("you won!!!");
+            setTimeout(won, 500);
         }
+    }
+
+    function won(): void {
+        alert("you won!!!");
     }
 
     // basierend auf Fisher-Yates Shuffle

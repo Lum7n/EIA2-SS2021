@@ -17,7 +17,7 @@ var Memory;
     let container;
     let form;
     let startButton;
-    let cardColor = "#46469b";
+    let cardFrontColor = "#46469b";
     let cardBackColor = "#521438";
     let fontColor = "#ffffff";
     window.addEventListener("load", handleLoad);
@@ -110,7 +110,7 @@ var Memory;
                     break;
                 case "cardFrontColor":
                     // console.log(item.value);
-                    cardColor = item.value;
+                    cardFrontColor = item.value;
                     break;
                 case "cardBackColor":
                     // console.log(item.value);
@@ -156,7 +156,7 @@ var Memory;
             div.classList.add("cardContainer");
             div.style.width = cardSize + "px";
             div.style.height = cardSize + "px";
-            div.style.backgroundColor = cardColor;
+            div.style.backgroundColor = cardFrontColor;
             let span = document.createElement("span");
             span.innerHTML = playcards[k];
             span.classList.add("unhidden");
@@ -174,6 +174,12 @@ var Memory;
             span.addEventListener("click", showLetters);
             div.appendChild(span);
             container.appendChild(div);
+            let width = span.offsetWidth;
+            let restWidth = cardSize - width;
+            let paddingLeft = restWidth / 2;
+            let paddingRight = restWidth / 2;
+            span.style.paddingLeft = paddingLeft + "px";
+            span.style.paddingRight = paddingRight + "px";
         }
         setTimeout(hideAllLetters, 3000);
     }
@@ -203,7 +209,7 @@ var Memory;
             card1.classList.remove("hidden");
             card1.classList.add("unhidden");
             card1.style.color = fontColor;
-            parent1.style.backgroundColor = cardColor;
+            parent1.style.backgroundColor = cardFrontColor;
             // console.log(card1);
         }
         else if (chosenCards.length == 2) {
@@ -213,7 +219,7 @@ var Memory;
             card2.classList.remove("hidden");
             card2.classList.add("unhidden");
             card2.style.color = fontColor;
-            parent2.style.backgroundColor = cardColor;
+            parent2.style.backgroundColor = cardFrontColor;
             // console.log(card2);
             setTimeout(checkForMatch, 500);
         }
@@ -243,8 +249,11 @@ var Memory;
         }
         chosenCards = [];
         if (matches.length == playcards.length) {
-            alert("you won!!!");
+            setTimeout(won, 500);
         }
+    }
+    function won() {
+        alert("you won!!!");
     }
     // basierend auf Fisher-Yates Shuffle
     function shuffle(_array) {
