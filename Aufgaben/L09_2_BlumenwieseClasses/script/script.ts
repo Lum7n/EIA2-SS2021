@@ -53,12 +53,8 @@ namespace Blumenwiese_L09 {
         drawMountains(new Vector(0, canvasHeight * reversGolden), 0.55, 0.70, "#7f91b3", "#4f4f69", "#9e9eb8");
         drawMountains(new Vector(0, canvasHeight * reversGolden), 0.5, 0.65, "#67688a", "#3b3e4d", "#9a8fa6");
 
-        let treeConifer: Conifer = new Conifer(new Vector(100, (reversGolden + 0.04) * canvasHeight), 0.5);
-        treeConifer.draw();
-        
-        // drawTrees({ x: 100, y: (reversGolden + 0.04) * canvasHeight }, 0.5, { c: 6, b: 4 });
-        // drawTrees({ x: 100, y: (reversGolden + 0.06) * canvasHeight }, 0.6, { c: 3, b: 3 });
-        // drawTrees({ x: 100, y: (reversGolden + 0.08) * canvasHeight }, 0.7, { c: 2, b: 1 });
+        drawTrees();
+        drawFlowers();
 
         //safe the steady background things
         backgroundImage = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
@@ -152,7 +148,7 @@ namespace Blumenwiese_L09 {
         let skyPart: number = horizon / 5;
 
         while (cloudAmount != 0) {
-            console.log("cloudAmount = " + cloudAmount);
+            // console.log("cloudAmount = " + cloudAmount);
 
             let positionX: number = 130 * (Math.random() * (cloudAmount + 5));
             let positionY: number = 2 * skyPart + (Math.random() * (skyPart * 3));
@@ -164,7 +160,7 @@ namespace Blumenwiese_L09 {
                 size.y = smallSizeFactor.y * canvasHeight;
                 size.x = smallSizeFactor.x * canvasWidth;
                 nParticles = Math.floor(size.x / 3);
-                console.log("nParticles = " + nParticles);
+                // console.log("nParticles = " + nParticles);
 
             } else {
 
@@ -175,7 +171,7 @@ namespace Blumenwiese_L09 {
                 } else {
                     nParticles = Math.floor(size.x / 5);
                 }
-                console.log("nParticles = " + nParticles);
+                // console.log("nParticles = " + nParticles);
 
             }
             let cloud: Cloud = new Cloud(new Vector(positionX, positionY), size, nParticles);
@@ -184,6 +180,91 @@ namespace Blumenwiese_L09 {
             cloudsArray.push(cloud);
 
             cloudAmount--;
+
+        }
+    }
+
+    function drawTrees(): void {
+
+        let amount: number = 10;
+        let positionY: number = 0.7;
+        let scaleFactor: number = 0.5;
+
+        for (let index: number = 0; index < amount; index++) {
+            if (index <= 5) {
+                positionY = (reversGolden + 0.04);
+                scaleFactor = 0.5;
+            } else if (index <= 8) {
+                positionY = (reversGolden + 0.06);
+                scaleFactor = 0.6;
+            } else {
+                positionY = (reversGolden + 0.08);
+                scaleFactor = 0.7;
+            }
+
+            let treeBroadleaf: Broadleaf = new Broadleaf(new Vector(100, positionY * canvasHeight), scaleFactor);
+            treeBroadleaf.draw();
+            let treeConifer: Conifer = new Conifer(new Vector(100, positionY * canvasHeight), scaleFactor);
+            treeConifer.draw();
+        }
+    }
+
+    function drawFlowers(): void {
+
+        let amount: number = 13;
+        let positionY: number = (golden - 0.04) * canvasHeight;
+        let scaleFactor: number = 0.4;
+
+        for (let index: number = 0; index < amount; index++) {
+            switch (index) {
+                case 0:
+                case 1:
+                    positionY = (golden - 0.04) * canvasHeight;
+                    scaleFactor = 0.4;
+                    break;
+                case 2:
+                case 3:
+                    positionY = (golden - 0.01) * canvasHeight;
+                    scaleFactor = 0.5;
+                    break;
+                case 4:
+                case 5:
+                    positionY = (golden + 0.04) * canvasHeight;
+                    scaleFactor = 0.4;
+                    break;
+                case 6:
+                case 7:
+                    positionY = (golden + 0.1) * canvasHeight;
+                    scaleFactor = 0.5;
+                    break;
+                case 8:
+                case 9:
+                    positionY = (golden + 0.2) * canvasHeight;
+                    scaleFactor = 0.7;
+                    break;
+                case 10:
+                case 11:
+                    positionY = (golden + 0.22) * canvasHeight;
+                    scaleFactor = 0.6;
+                    break;
+                case 12:
+                case 13:
+                    positionY = (golden + 0.35) * canvasHeight;
+                    scaleFactor = 0.7;
+                    break;
+                default:
+                    console.log("too much");
+                    break;
+            }
+
+            let flowerPurple: Flower = new Flower(new Vector(200, positionY), scaleFactor, "p");
+            flowerPurple.draw();
+            let flowerRosa: Flower = new Flower(new Vector(200, positionY), scaleFactor, "r");
+            flowerRosa.draw();
+            let flowerBlue: Flower = new Flower(new Vector(200, positionY), scaleFactor, "b");
+            flowerBlue.draw();
+            let flowerYellow: Flower = new Flower(new Vector(200, positionY), scaleFactor, "y");
+            flowerYellow.draw();
 
         }
     }

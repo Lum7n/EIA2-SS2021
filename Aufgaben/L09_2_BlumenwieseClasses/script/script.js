@@ -33,11 +33,8 @@ var Blumenwiese_L09;
         drawSun(new Blumenwiese_L09.Vector(golden, 0.25));
         drawMountains(new Blumenwiese_L09.Vector(0, Blumenwiese_L09.canvasHeight * reversGolden), 0.55, 0.70, "#7f91b3", "#4f4f69", "#9e9eb8");
         drawMountains(new Blumenwiese_L09.Vector(0, Blumenwiese_L09.canvasHeight * reversGolden), 0.5, 0.65, "#67688a", "#3b3e4d", "#9a8fa6");
-        let treeConifer = new Blumenwiese_L09.Conifer(new Blumenwiese_L09.Vector(100, (reversGolden + 0.04) * Blumenwiese_L09.canvasHeight), 0.5);
-        treeConifer.draw();
-        // drawTrees({ x: 100, y: (reversGolden + 0.04) * canvasHeight }, 0.5, { c: 6, b: 4 });
-        // drawTrees({ x: 100, y: (reversGolden + 0.06) * canvasHeight }, 0.6, { c: 3, b: 3 });
-        // drawTrees({ x: 100, y: (reversGolden + 0.08) * canvasHeight }, 0.7, { c: 2, b: 1 });
+        drawTrees();
+        drawFlowers();
         //safe the steady background things
         backgroundImage = Blumenwiese_L09.crc2.getImageData(0, 0, Blumenwiese_L09.crc2.canvas.width, Blumenwiese_L09.crc2.canvas.height);
     }
@@ -108,7 +105,7 @@ var Blumenwiese_L09;
         let horizon = (1 - 0.8) * Blumenwiese_L09.canvasHeight;
         let skyPart = horizon / 5;
         while (cloudAmount != 0) {
-            console.log("cloudAmount = " + cloudAmount);
+            // console.log("cloudAmount = " + cloudAmount);
             let positionX = 130 * (Math.random() * (cloudAmount + 5));
             let positionY = 2 * skyPart + (Math.random() * (skyPart * 3));
             let size = new Blumenwiese_L09.Vector(0, 0);
@@ -116,7 +113,7 @@ var Blumenwiese_L09;
                 size.y = smallSizeFactor.y * Blumenwiese_L09.canvasHeight;
                 size.x = smallSizeFactor.x * Blumenwiese_L09.canvasWidth;
                 nParticles = Math.floor(size.x / 3);
-                console.log("nParticles = " + nParticles);
+                // console.log("nParticles = " + nParticles);
             }
             else {
                 size.y = bigSizeFactor.y * Blumenwiese_L09.canvasHeight;
@@ -127,12 +124,90 @@ var Blumenwiese_L09;
                 else {
                     nParticles = Math.floor(size.x / 5);
                 }
-                console.log("nParticles = " + nParticles);
+                // console.log("nParticles = " + nParticles);
             }
             let cloud = new Blumenwiese_L09.Cloud(new Blumenwiese_L09.Vector(positionX, positionY), size, nParticles);
             cloud.draw();
             cloudsArray.push(cloud);
             cloudAmount--;
+        }
+    }
+    function drawTrees() {
+        let amount = 10;
+        let positionY = 0.7;
+        let scaleFactor = 0.5;
+        for (let index = 0; index < amount; index++) {
+            if (index <= 5) {
+                positionY = (reversGolden + 0.04);
+                scaleFactor = 0.5;
+            }
+            else if (index <= 8) {
+                positionY = (reversGolden + 0.06);
+                scaleFactor = 0.6;
+            }
+            else {
+                positionY = (reversGolden + 0.08);
+                scaleFactor = 0.7;
+            }
+            let treeBroadleaf = new Blumenwiese_L09.Broadleaf(new Blumenwiese_L09.Vector(100, positionY * Blumenwiese_L09.canvasHeight), scaleFactor);
+            treeBroadleaf.draw();
+            let treeConifer = new Blumenwiese_L09.Conifer(new Blumenwiese_L09.Vector(100, positionY * Blumenwiese_L09.canvasHeight), scaleFactor);
+            treeConifer.draw();
+        }
+    }
+    function drawFlowers() {
+        let amount = 13;
+        let positionY = (golden - 0.04) * Blumenwiese_L09.canvasHeight;
+        let scaleFactor = 0.4;
+        for (let index = 0; index < amount; index++) {
+            switch (index) {
+                case 0:
+                case 1:
+                    positionY = (golden - 0.04) * Blumenwiese_L09.canvasHeight;
+                    scaleFactor = 0.4;
+                    break;
+                case 2:
+                case 3:
+                    positionY = (golden - 0.01) * Blumenwiese_L09.canvasHeight;
+                    scaleFactor = 0.5;
+                    break;
+                case 4:
+                case 5:
+                    positionY = (golden + 0.04) * Blumenwiese_L09.canvasHeight;
+                    scaleFactor = 0.4;
+                    break;
+                case 6:
+                case 7:
+                    positionY = (golden + 0.1) * Blumenwiese_L09.canvasHeight;
+                    scaleFactor = 0.5;
+                    break;
+                case 8:
+                case 9:
+                    positionY = (golden + 0.2) * Blumenwiese_L09.canvasHeight;
+                    scaleFactor = 0.7;
+                    break;
+                case 10:
+                case 11:
+                    positionY = (golden + 0.22) * Blumenwiese_L09.canvasHeight;
+                    scaleFactor = 0.6;
+                    break;
+                case 12:
+                case 13:
+                    positionY = (golden + 0.35) * Blumenwiese_L09.canvasHeight;
+                    scaleFactor = 0.7;
+                    break;
+                default:
+                    console.log("too much");
+                    break;
+            }
+            let flowerPurple = new Blumenwiese_L09.Flower(new Blumenwiese_L09.Vector(200, positionY), scaleFactor, "p");
+            flowerPurple.draw();
+            let flowerRosa = new Blumenwiese_L09.Flower(new Blumenwiese_L09.Vector(200, positionY), scaleFactor, "r");
+            flowerRosa.draw();
+            let flowerBlue = new Blumenwiese_L09.Flower(new Blumenwiese_L09.Vector(200, positionY), scaleFactor, "b");
+            flowerBlue.draw();
+            let flowerYellow = new Blumenwiese_L09.Flower(new Blumenwiese_L09.Vector(200, positionY), scaleFactor, "y");
+            flowerYellow.draw();
         }
     }
     function animate() {
