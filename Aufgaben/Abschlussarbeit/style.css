@@ -1,0 +1,253 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-variant: small-caps;
+    display: grid;
+	grid-template-columns: 65% 35%;
+	grid-template-rows: auto auto;
+    overflow: hidden;
+}
+
+fieldset {
+	width: auto;
+    border: none;
+}
+
+h1 {
+    font-variant: normal;
+	grid-column: span 2;
+	text-align: center;
+    text-decoration: underline double 2px;
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+br {
+    line-height: 1.1em;
+}
+
+#right > div{
+    position: relative;
+    margin-bottom: 2em;
+    padding: 5px;
+    line-height: 1.3em;
+    font-size: 1.7em;
+}
+
+/* settings display */
+
+#settings {
+    margin-top: 80px;
+    display: inline-block;
+}
+
+#Hshirt, #Gshirt{
+    position: relative;
+    display: inline-block;
+    border: 1px solid black;
+    margin-top: 10px;
+    margin-bottom: -10px;
+    padding: 6px;
+    font-size: 6.7em;
+}
+
+#Hshirt {
+    color: #94cad1;
+    margin-right: 6px;
+}
+
+#Gshirt {
+    color: #4d0808;
+    margin-right: 1px;
+}
+
+#Hfont, #Gfont {
+    font-size: 0.8em;
+    position: absolute;
+    top: 25px;
+    left: 85px;
+    color: lightblue;
+}
+
+#Hfont {
+    color: #08444d;
+}
+
+#Gfont {
+    color: #ff6666;
+}
+
+#tHeim_shirt, #tGast_shirt {
+    position: absolute;
+    margin-top: 7px;
+    left: 270px;
+    padding: 0px 1px;
+}
+
+#tHeim_font, #tGast_font {
+    position: absolute;
+    margin-top: 7px;
+    left: 320px;
+    padding: 0px 1px;
+}
+
+#settings label {
+    position: absolute;
+    left: 360px;
+}
+
+#settings input[type=number] {
+    position: absolute;
+    left: 430px;
+    margin-top: 6px;
+    padding-top: 2px;
+    width: 60px;
+}
+
+#settingsBtn {
+    position: relative;
+    top: -85px;
+    left: 343px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-variant: small-caps;
+    font-size: 1.0em;
+}
+
+/* start button */
+
+#startBtn {
+    position: absolute;
+    bottom: -10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-variant: small-caps;
+    font-size: 1.5em;
+}
+
+/* possession display */
+
+#possession {
+    margin-top: -100px;
+    height: 145px;
+    width: 490px;
+    display: none;
+}
+
+#posShirt {
+    position: absolute;
+    display: inline-block;
+    left: 190px;
+    top: 10px;
+    font-size: 5em;
+}
+
+#posFont {
+    position: absolute;
+    left: 45px;
+    top: 25px;
+    color: rosybrown;
+    font-size: 0.6em;
+}
+
+#posPrecision {
+    position: absolute;
+    left: 392px;
+    top: 35px;
+    font-size: 1.3em;
+}
+
+#posSpeed {
+    position: absolute;
+    left: 388px;
+    top: 90px;
+    font-size: 1.3em;
+}
+
+/* selected */
+
+#selected {
+    height: 300px;
+    width: 490px;
+    border: 2px solid black;
+    display: none;
+}
+
+#slcPlayer {
+    position: absolute;
+    display: block;
+    top: 110px;
+    font-size: 1.4em;
+}
+
+#slcSpeed {
+    position: absolute;
+    display: block;
+    top: 260px;
+}
+
+#slcPrecision {
+    position: absolute;
+    display: block;
+    top: 220px;
+}
+
+#slcChangePlayer {
+    position: absolute;
+    border: 2px solid black;
+    transform: rotate(-90deg);
+    padding: 5px;
+    right: 10px;
+    top: 10px;
+    font-size: 1.4em;
+}
+
+#slcShirt {
+    position: absolute;
+    display: inline-block;
+    right: 20px;
+    top: 85px;
+    font-size: 6em;
+}
+
+#slcFont {
+    position: absolute;
+    left: 53px;
+    top: 30px;
+    color: rosybrown;
+    font-size: 0.6em;
+}
+
+/* scoreboard */
+
+#scoreboard {
+    height: 100px;
+    width: 400px;
+    padding: 0px 30px 10px 20px;
+    margin: auto;
+    margin-bottom: 10px;
+    border: 5px double gray;
+    background-color: black;
+    text-align: center;
+}
+
+#sbHeim, #sbGast {
+    font-size: 3em;
+    color: white;
+}
+
+#sbScore {
+    font-size: 5em;
+    color: #ff9c2b;
+    padding: 0px 12px 0px 15px;
+}
+
+#soccerCanvas {
+    margin: auto;
+    text-align: center;
+}
+
+/* imagesources */
+
+#referee_muster {
+    display: none;
+}

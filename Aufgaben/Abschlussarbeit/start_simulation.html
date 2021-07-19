@@ -1,0 +1,111 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="script/vector.js"></script>
+    <script src="script/moveable.js"></script>
+    <script src="script/ball.js"></script>
+    <script src="script/player.js"></script>
+    <script src="script/referee.js"></script>
+    <script src="script/settings.js"></script>
+    <script src="script/main.js"></script>
+    <title>Jogis Fußball-Simulation</title>
+</head>
+
+<body>
+
+    <h1>Jogis Fußball-Simulation</h1>
+
+    <fieldset id="left">
+
+        <div id="scoreboard">
+            <span id="sbHeim">Heim</span>
+            <span id="sbScore">0:0</span>
+            <span id="sbGast">Gast</span>
+        </div>
+
+        <div id="soccerCanvas">
+            <canvas></canvas>
+        </div>
+
+    </fieldset>
+
+    <form>
+        <fieldset id="right">
+
+            <!-- <div id="settingsButton">
+                <button id="settingsBtn">Settings <small class='fas fa-cog'></small></button>
+            </div> -->
+
+            <div id="settings">
+                <!-- Heim-Team Trikot:
+                <input type="color" id="tHeim_shirt" name="tHeim_shirt" value="#94cad1">
+                <input type="color" id="tHeim_font" name="tHeim_font" value="#08444d">
+                </br>
+                Gast-Team Trikot:
+                <input type="color" id="tGast_shirt" name="tGast_shirt" value="#4d0808">
+                <input type="color" id="tGast_font" name="tGast_font" value="#ff6666">
+                </br>
+                <div id="Hshirt" class="fas fa-tshirt"><span id="Hfont">1</span></div>
+                <div id="Gshirt" class="fas fa-tshirt"><span id="Gfont">2</span></div>
+                </br>
+                </br>
+                Sprintgeschiwindigkeit
+                <label for="sMin">
+                    Min
+                </label>
+                <input type="number" id="sMin" name="sMin" min="10" max="30" value="22" step="2">
+                </br>
+                <label for="sMax">
+                    Max
+                </label>
+                <input type="number" id="sMax" name="sMax" min="20" max="40" value="34" step="2">
+                </br>
+                </br>
+                Präzision
+                <label for="pMin">
+                    Min
+                </label>
+                <input type="number" id="pMin" name="pMin" min="40" max="90" value="64" step="2">
+                </br>
+                <label for="pMax">
+                    Max
+                </label>
+                <input type="number" id="pMax" name="pMax" min="50" max="99" value="96" step="2">
+                </br>
+                </br>
+                <button id="startBtn">Start</button> -->
+            </div>
+
+            <div id="possession">
+                <u>Ballbesitz</u>
+                </br>
+                </br>
+                <span id="posPlayer">M. Hummels</span>
+                <div id="posShirt" class="fas fa-tshirt"><span id="posFont">88</span></div>
+                <span id="posSpeed" class="fas fa-tachometer-alt"> 32</span>
+                <span id="posPrecision" class="fas fa-crosshairs"> 82</span>
+            </div>
+
+            <div id="selected">
+                <u>Ausgewählter Spieler</u>
+                <span id="slcPlayer">M. Hummels</span>
+                <span id="slcPrecision">Präzision <span  id="slcPrecision2" class="fas fa-crosshairs"> 82</span></span>
+                <span id="slcSpeed">Geschwindigkeit <span  id="slcSpeed2" class="fas fa-tachometer-alt"> 32 km/h</span></span>
+                <div id="slcChangePlayer" class="fas fa-exchange-alt"></div>
+                <div id="slcShirt" class="fas fa-tshirt"><span id="slcFont">88</span></div>
+            </div>
+
+        </fieldset>
+    </form>
+
+    <img src="referee_muster.jpg" id="referee_muster">
+
+
+</body>
+
+</html>
